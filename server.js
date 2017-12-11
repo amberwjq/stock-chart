@@ -1,17 +1,28 @@
+<<<<<<< HEAD
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 const mongo = require('mongodb').MongoClient;
+=======
+var express = require('express'),
+
+    mongoose =require('mongoose')
+>>>>>>> cb9575eedb47c390c2f85882f6deb97a884bffdc
 
 
 
 //an environment variable that I can determine I'm in dev mode or production mode
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+<<<<<<< HEAD
+=======
+var app = express();
+>>>>>>> cb9575eedb47c390c2f85882f6deb97a884bffdc
 var config = require('./server/config/config')[env]
 
 require('./server/config/express')(app,config);
 
+<<<<<<< HEAD
 mongo.connect(config.db, function(err, db){
     if(err){
         throw err;
@@ -78,10 +89,18 @@ mongo.connect(config.db, function(err, db){
 
 
  
+=======
+require('./server/config/mongoose')(config);
+>>>>>>> cb9575eedb47c390c2f85882f6deb97a884bffdc
 
 require('./server/config/route')(app);
 
 
+<<<<<<< HEAD
 
 server.listen(config.port);
+=======
+var port=
+app.listen(config.port);
+>>>>>>> cb9575eedb47c390c2f85882f6deb97a884bffdc
 console.log('Listen on port    ' + config.port +'.....');
