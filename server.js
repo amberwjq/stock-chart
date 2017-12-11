@@ -1,31 +1,19 @@
-<<<<<<< HEAD
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 const mongo = require('mongodb').MongoClient;
-=======
-var express = require('express'),
-
-    mongoose =require('mongoose')
->>>>>>> cb9575eedb47c390c2f85882f6deb97a884bffdc
-
-
+var path = process.cwd();
 
 //an environment variable that I can determine I'm in dev mode or production mode
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
-<<<<<<< HEAD
-=======
-var app = express();
->>>>>>> cb9575eedb47c390c2f85882f6deb97a884bffdc
 var config = require('./server/config/config')[env]
 
 require('./server/config/express')(app,config);
 
-<<<<<<< HEAD
 mongo.connect(config.db, function(err, db){
     if(err){
-        throw err;
+        console.log(err);
     }
 
     console.log('MongoDB connected...');
@@ -42,9 +30,6 @@ mongo.connect(config.db, function(err, db){
             io.emit('output', res);
         });
     };
-
-    // Create function to send status
-
 
     // Get chats from mongo collection
     findAndReturnAll();
@@ -74,33 +59,16 @@ mongo.connect(config.db, function(err, db){
             if (err) { return sendError(res,err) }
             else{ findAndReturnAll();}
         });
-        // Remove all chats from collection
-        // stock.find({_id:id}, function (err, stock) {
-        //     stock.remove(function (err, stock) {
-        //     if(err) console.log(err);
-        //     });
-        //     findAndReturnAll();
-
-        // });
-
     });
 });    
 });
 
-
- 
-=======
-require('./server/config/mongoose')(config);
->>>>>>> cb9575eedb47c390c2f85882f6deb97a884bffdc
-
-require('./server/config/route')(app);
+app.get('/', function(req, res){
+    console.log(' list 应用首页的位置');
+    res.sendFile(path + '/public/views/index.html');
+});
 
 
-<<<<<<< HEAD
 
 server.listen(config.port);
-=======
-var port=
-app.listen(config.port);
->>>>>>> cb9575eedb47c390c2f85882f6deb97a884bffdc
 console.log('Listen on port    ' + config.port +'.....');

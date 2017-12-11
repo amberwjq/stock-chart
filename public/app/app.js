@@ -1,22 +1,11 @@
-<<<<<<< HEAD
 var stockChart = angular.module('stockChart', ['ngRoute']);
 
 
 stockChart.controller('stockChartController',function($scope,$http,$route)
-=======
-var stockChart = angular.module('stockChart', []);
-
-
-stockChart.controller('stockChartController',function($scope,$http)
->>>>>>> cb9575eedb47c390c2f85882f6deb97a884bffdc
 {  
     formdata={
                 content: ''
             };
-<<<<<<< HEAD
-=======
-    var stocks;
->>>>>>> cb9575eedb47c390c2f85882f6deb97a884bffdc
     var options = {
         chart: {
             renderTo: 'container',
@@ -43,7 +32,6 @@ stockChart.controller('stockChartController',function($scope,$http)
             type: 'datetime'
         },
         series: [],
-<<<<<<< HEAD
     };
             // Connect to socket.io
             var socket = io.connect('http://localhost:3030');
@@ -64,9 +52,6 @@ stockChart.controller('stockChartController',function($scope,$http)
                                 }
                             });
                         }               
-=======
-    };           
->>>>>>> cb9575eedb47c390c2f85882f6deb97a884bffdc
   function createChart(key,subject){
         var now = new Date();
         var year = now.getFullYear();
@@ -104,28 +89,12 @@ stockChart.controller('stockChartController',function($scope,$http)
 
         };
         
-<<<<<<< HEAD
-=======
-
-        
-        console.log("current key subject"+key+subject)
-        console.log("before "); 
-        console.log(options.series)
->>>>>>> cb9575eedb47c390c2f85882f6deb97a884bffdc
         options.series.push({ 
             "name" : subject,
             "data"  : data
             
         });
-<<<<<<< HEAD
         if(options.series.length == $scope.stocks.length)  {
-=======
-       
-        console.log("after "); 
-        console.log(options.series)
-        console.log(stocks.length);
-        if(options.series.length == stocks.length)  {
->>>>>>> cb9575eedb47c390c2f85882f6deb97a884bffdc
             var chart = new Highcharts.stockChart(options);  
         }
        
@@ -134,7 +103,6 @@ stockChart.controller('stockChartController',function($scope,$http)
         
 
         
-<<<<<<< HEAD
     } 
           
   
@@ -147,65 +115,6 @@ $scope.deleteTodo = function(subject) {
     console.log(subject);
     socket.emit('clear',subject);
 };
-=======
-    }        
-  $http.get('/api/stocks').then(function(response){
-    if(response.data.success){
-      $scope.stocks=response.data.stocks;
-      stocks = $scope.stocks;
-     
-      
-      $(document).ready(function() {
-         for(key in stocks)
-        {
-                console.log(stocks[key]);
-                createChart(key,stocks[key].subject); 
-         }
-         console.log("after for loop");
-         console.log(options.series);
-        
-              
-                      
-           
-           
-     });      
-      
-
-
-    }
-    else {
-        console.log(response.data.reason)
-    }
-  })   
-    // when submitting the add form, send the text to the node API
-    $scope.createTodo = function() {
-        $http.post('/api/todo', $scope.formdata)
-        .then(function(response){
-            if(response.data.success){
-              console.log('New Poll created!');
-              $scope.stocks=response.data.stocks;     
-        
-            }
-            else {
-                console.log(response.data.reason)
-            }
-          });
-    };
-    // delete a todo after checking it
-    $scope.deleteTodo = function(id) {
-        $http.delete('/api/todo/' + id)
-        .then(function(response){
-            if(response.data.success){
-              console.log("Delete!");
-              $scope.stocks=response.data.stocks;     
-        
-            }
-            else {
-                console.log(response.data.reason)
-            }
-          });
-    };
->>>>>>> cb9575eedb47c390c2f85882f6deb97a884bffdc
 
 
 })
