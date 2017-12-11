@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		    <meta charset="UTF-8">
+			<title>Home Page for Stock Watch App</title>
+			<base href="/">
+       
+        <link rel="stylesheet"  href="/css/site.css">
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <script src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript"  src="/vendor/jquery/dist/jquery.js"></script> 
+        <script src="https://code.highcharts.com/stock/highstock.js"></script>
+		<script type="text/javascript" src="/vendor/angular/angular.js"></script>
+		<script type="text/javascript", src="/vendor/angular-cookie/angular-cookie.js"></script>
+		<script type="text/javascript", src="/vendor/angular-resource/angular-resource.js"></script>
+		<script type="text/javascript", src="/vendor/angular-route/angular-route.js"></script>		
+		<script type="text/javascript", src="/app/app.js"></script>
+		<script type="text/javascript", src="/app/mvSocket.js"></script>
+
+
+    </head>
+    <body ng-app="stockChart">
+        <div id="container"></div>
+        
+<div class="row" ng-controller="stockChartController">
+	<div class="col-sm-4" ng-repeat="stock in stocks">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					{{stock.subject}}
+					<div class="pull-right">
+							<button class="btn btn-info btn-xs"><span class="glyphicon glyphicon-remove" 
+								ng-click="deleteTodo(stock.subject)"></span></button>
+					</div>
+				</h4>
+			</div>
+
+			<div class="panel-wrapper collapse in">
+				<div class="panel-body">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-4">
+		<div  class="panel panel-primary">
+				<div class="panel-heading">
+						<h4 class="panel-title">
+								Syncs in realtime across clients
+						</h4>
+					</div>	
+				<div class="panel-wrapper collapse in">
+						<div class="panel-body">
+								
+								<div class="form">
+										<div class="input-group">
+										  <input type="text" class="form-control" ng-model="formdata.content" placeholder="stock code">
+										  <span class="input-group-btn">
+											<button class="btn btn-default" type="button" ng-click="createTodo()"><span
+											  class="glyphicon glyphicon-plus"></span> Add Stock</button>
+										  </span>
+										</div><!-- /input-group -->
+								</div>
+						</div>
+					</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+    </body>
+</html>
