@@ -4,6 +4,7 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 const mongo = require('mongodb').MongoClient;
 var path = process.cwd();
+var cts = require('check-ticker-symbol');
 
 //an environment variable that I can determine I'm in dev mode or production mode
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
@@ -38,7 +39,7 @@ mongo.connect(config.db, function(err, db){
     // Handle input events
     socket.on('input', function(data){
         let subject = data.content;
-        if(subject == ''){
+        if((subject == '')||(! cts.valid(subject))){
             // Send error status
             sendStatus('Please enter a name and message');
         } else {
@@ -52,10 +53,7 @@ mongo.connect(config.db, function(err, db){
 
     // Handle clear
     socket.on('clear', function(subject){
-        console.log(subject);
-        stock.remove({"subject": subject},function(err, doc){
-            console.log(err);
-            
+        stock.remove({"subject": subject},function(err, doc){           
             if (err) { return sendError(res,err) }
             else{ findAndReturnAll();}
         });
