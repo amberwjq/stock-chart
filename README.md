@@ -6,9 +6,9 @@ deployed to heroku  https://immense-island-14732.herokuapp.com/
   Highchart  
   socket.io  
   AngularJS  
-  Node
-  Mongoose
-  Express
+  Node  
+  Mongoose  
+  Express  
 
 
 [![Screen_Shot_2017-12-14_at_2.32.45_PM.png](https://s17.postimg.org/ki3lmtzj3/Screen_Shot_2017-12-14_at_2.32.45_PM.png)](https://postimg.org/image/fw7hehdzv/)
