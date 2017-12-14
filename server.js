@@ -4,13 +4,17 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 const mongo = require('mongodb').MongoClient;
 var path = process.cwd();
-var cts = require('check-ticker-symbol');
 
 //an environment variable that I can determine I'm in dev mode or production mode
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var config = require('./server/config/config')[env]
 
 require('./server/config/express')(app,config);
+
+
+require('./server/config/route')(app);
+
+
 
 mongo.connect(config.db, function(err, db){
     if(err){
@@ -21,16 +25,7 @@ mongo.connect(config.db, function(err, db){
  // Connect to Socket.io
     io.on('connection', function(socket){
     let stock = db.collection('stocks');
-    function findAndReturnAll(){
-        stock.find().toArray(function(err, res){
-            if(err){
-                throw err;
-            }
-            console.log("stoc find    "+ res);
-            // Emit the messages
-            io.emit('output', res);
-        });
-    };
+
 
     // Get chats from mongo collection
     findAndReturnAll();
@@ -39,7 +34,7 @@ mongo.connect(config.db, function(err, db){
     // Handle input events
     socket.on('input', function(data){
         let subject = data.content;
-        if((subject == '')||(! cts.valid(subject))){
+        if((subject == '')){
             // Send error status
             sendStatus('Please enter a name and message');
         } else {
@@ -58,13 +53,22 @@ mongo.connect(config.db, function(err, db){
             else{ findAndReturnAll();}
         });
     });
+
+    
+    function findAndReturnAll(){
+        stock.find().toArray(function(err, res){
+            if(err){
+                throw err;
+            }
+            console.log("stoc find    "+ res);
+            // Emit the messages
+            io.emit('output', res);
+        });
+    };
 });    
 });
 
-app.get('/', function(req, res){
-    console.log(' list 应用首页的位置');
-    res.sendFile(path + '/public/views/index.html');
-});
+
 
 
 

@@ -17,6 +17,7 @@
 		<script type="text/javascript", src="/vendor/angular-resource/angular-resource.js"></script>
 		<script type="text/javascript", src="/vendor/angular-route/angular-route.js"></script>		
 		<script type="text/javascript", src="/app/app.js"></script>
+		<script type="text/javascript", src="/app/mvStock.js"></script>
 
 
     </head>
@@ -60,8 +61,9 @@
 											<button class="btn btn-default" type="button" ng-click="createTodo()"><span
 											  class="glyphicon glyphicon-plus"></span> Add Stock</button>
 										  </span>
-										  <div class="error">{{error_message }}</div>
+										  
 										</div><!-- /input-group -->
+										<div class="error">{{errorMessage }}</div>
 								</div>
 						</div>
 					</div>
