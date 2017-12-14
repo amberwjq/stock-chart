@@ -33,17 +33,12 @@ mongo.connect(config.db, function(err, db){
 
     // Handle input events
     socket.on('input', function(data){
-        let subject = data.content;
-        if((subject == '')){
-            // Send error status
-            sendStatus('Please enter a name and message');
-        } else {
-            // Insert message
-            stock.insert({subject:subject}, function(){
+
+            stock.insert(data, function(){
                 findAndReturnAll();
                 
             });
-        }
+
     });
 
     // Handle clear

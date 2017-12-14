@@ -35,31 +35,30 @@ stockChart.controller('stockChartController',function($scope,$http,$route,mvStoc
                },
                series: [{},{},{},{},{},{},{},{},{},{}],
             };
-     var tempSeries = [];       
-     var chart =new Highcharts.stockChart(options);  
-        var localSite =  "http://localhost:3030";        
-        var herokuSite = "https://immense-island-14732.herokuapp.com/"
-        var socket = io.connect(herokuSite);       
-        // Check for connection
-        if(socket !== undefined){
-            console.log('Connected to socket...');            
-            // Handle Output
-            socket.on('output', function(data){
-                tempSeries = [];              
-                $scope.stocks=data;
-                $scope.stocks.forEach(function(element){
-                    console.log(element);
-                    getStock(element.subject);
+    var tempSeries = [];       
+    var chart =new Highcharts.stockChart(options);  
+    var localSite =  "http://localhost:3030";        
+    var herokuSite = "https://immense-island-14732.herokuapp.com/"
+    var socket = io.connect(herokuSite);       
+    // Check for connection
+    if(socket !== undefined){
+        console.log('Connected to socket...');            
+        // Handle Output
+        socket.on('output', function(data){
+            tempSeries = [];              
+            $scope.stocks=data;
+            $scope.stocks.forEach(function(element){
+                console.log(element);
+                getStock(element.subject);
+                
                     
-                     
-                })
-            });
-        };
+            })
+        });
+    };
 
        
 
   function getStock(subject) {
-    console.log("subject____"+subject);
     var serie = {
       name: subject,
       data: []
@@ -84,6 +83,10 @@ stockChart.controller('stockChartController',function($scope,$http,$route,mvStoc
   };
 // when submitting the add form, send the text to the node API
 $scope.createTodo = function() {
+    var newStock ={
+        subject:"",
+        detail:""
+    }
     console.log("create todo");
     $scope.errorMessage='';
     var newSubject = $scope.formdata.content;
@@ -96,7 +99,9 @@ $scope.createTodo = function() {
         mvStock.get(newSubject)
         .then(function(response) {
           if(response.data.success){
-              socket.emit('input', $scope.formdata);
+              newStock.subject=newSubject;
+              newStock.detail=response.data.detail; 
+              socket.emit('input',newStock);
               serie.data = response.data.data;
               console.log(tempSeries);
               tempSeries.push(serie);
@@ -128,8 +133,7 @@ $scope.deleteTodo = function(subject) {
     console.log(tempSeries);
     chart.update({
         series:tempSeries
-    },true);  
-    
+    },true);      
     $route.reload();
 };
 

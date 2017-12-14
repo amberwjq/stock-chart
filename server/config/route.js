@@ -62,7 +62,7 @@ module.exports=function(app){
                     data[i]=tempArray
             
                 };
-                return res.send({success:true,data:data});
+                return res.send({success:true,data:data,detail:response.dataset.name});
           
            })
            .catch(function (err) {

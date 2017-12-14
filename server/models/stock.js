@@ -4,11 +4,9 @@ var Schema = mongoose.Schema;
 var  stockSchema = new Schema(
 {
   subject:String,
+  detail:String
 
 });
-
-   
-
 var Stock = mongoose.model('Stock', stockSchema);
 
 
