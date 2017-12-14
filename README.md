@@ -2,7 +2,6 @@
 # stock-chart
 deployed to heroku  https://immense-island-14732.herokuapp.com/
 
-[![Screen_Shot_2017-12-14_at_2.32.20_PM.png](https://s17.postimg.org/5m52f5gdr/Screen_Shot_2017-12-14_at_2.32.20_PM.png)](https://postimg.org/image/6of8xoz6z/)
 # use
 Highchart
 socket.io
@@ -11,6 +10,9 @@ Node
 Mongoose
 Express
 
+
+
+[![Screen_Shot_2017-12-14_at_2.32.20_PM.png](https://s17.postimg.org/5m52f5gdr/Screen_Shot_2017-12-14_at_2.32.20_PM.png)](https://postimg.org/image/6of8xoz6z/)
 # User Story
 
 I can view a graph displaying the recent trend lines for each added stock.
