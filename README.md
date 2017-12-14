@@ -11,8 +11,7 @@ Mongoose
 Express
 
 
-
-[![Screen_Shot_2017-12-14_at_2.32.20_PM.png](https://s17.postimg.org/5m52f5gdr/Screen_Shot_2017-12-14_at_2.32.20_PM.png)](https://postimg.org/image/6of8xoz6z/)
+[![Screen_Shot_2017-12-14_at_2.32.45_PM.png](https://s17.postimg.org/ki3lmtzj3/Screen_Shot_2017-12-14_at_2.32.45_PM.png)](https://postimg.org/image/fw7hehdzv/)
 # User Story
 
 I can view a graph displaying the recent trend lines for each added stock.
