@@ -10,6 +10,10 @@
     "node": "6.10.x",
     "npm": "3.10.x"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/amberwjq/stock-chart.git"
+  },
   "author": "amberwu",
   "license": "ISC",
   "dependencies": {
@@ -23,6 +27,7 @@
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "request": "^2.83.0",
     "request-promise": "^4.2.2",
     "socket.io": "^2.0.4",
     "stylus": "^0.54.5"
