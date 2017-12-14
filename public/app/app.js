@@ -36,9 +36,10 @@ stockChart.controller('stockChartController',function($scope,$http,$route,mvStoc
                series: [{},{},{},{},{},{},{},{},{},{}],
             };
      var tempSeries = [];       
-     var chart =new Highcharts.stockChart(options);           
-
-        var socket = io.connect('http://localhost:3030');       
+     var chart =new Highcharts.stockChart(options);  
+        var localSite =  "http://localhost:3030";        
+        var herokuSite = "https://immense-island-14732.herokuapp.com/"
+        var socket = io.connect(herokuSite);       
         // Check for connection
         if(socket !== undefined){
             console.log('Connected to socket...');            
